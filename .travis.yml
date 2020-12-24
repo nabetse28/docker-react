@@ -1,0 +1,13 @@
+sudo: required
+language: generic
+services:
+  - docker
+
+# Try to always use a tag when you are automating things with Travis or other softwares
+
+before_install:
+  - docker build -t nabetse28/docker-react -f Dockerfile.dev .
+
+
+script:
+  - docker run -e CI=true nabetse28/docker-react npm run test

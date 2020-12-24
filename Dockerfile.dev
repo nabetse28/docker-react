@@ -1,0 +1,15 @@
+# This Dockerfile is for TESTING ONLY
+
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# This line of copying can be removed, but its there just in case some person wants you to dont use 
+# the docker-compose. It can be removed because the docker-compose.yaml does this line of copying files.
+
+COPY . .
+
+CMD ["npm", "run", "start"]
