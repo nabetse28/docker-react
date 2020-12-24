@@ -12,8 +12,10 @@ RUN npm run build
 
 # Second stage the server of nginx
 FROM nginx
+EXPOSE 80
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # The folder that uses the container to automatic serve an html is '/usr/share/nginx/html' 
 # this is the reason why we're using that folder's path and the nginx start commnad is not
 # required because an nginx container does it automatically when you create an nginx container.
+# Se define EXPOSE para que AWS o el servicio que se utilice pueda exponer el contenido de la pagina de forma correcta, pero esto no afecta en nuestra computadora.
